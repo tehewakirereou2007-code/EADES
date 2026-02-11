@@ -38,7 +38,7 @@ export async function getOrCreateNeighborhood(inputName: string) {
 
     // 2. Fuzzy match
     // We iterate over all neighborhoods and find the closest one.
-    let bestMatch: typeof match | null = null;
+    let bestMatch: { id: string, name: string } | null = null;
     let minDistance = Infinity;
 
     for (const n of allNeighborhoods) {
