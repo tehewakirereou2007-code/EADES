@@ -16,7 +16,7 @@ const houseFormSchema = z.object({
     price: z.number().positive("Le prix doit être positif"),
     neighborhoodName: z.string().min(2, "Nom du quartier requis"),
     location: z.string().optional(),
-    images: z.array(z.string().url("URL invalide")).min(1, "Au moins une image requise"),
+    images: z.array(z.object({ url: z.string().url("URL invalide") })).min(1, "Au moins une image requise"),
 });
 
 type HouseFormValues = z.infer<typeof houseFormSchema>;
@@ -39,7 +39,7 @@ export default function AddPropertyForm() {
             price: 0,
             neighborhoodName: "",
             location: "",
-            images: [""],
+            images: [{ url: "" }],
         },
     });
 
@@ -55,6 +55,7 @@ export default function AddPropertyForm() {
         try {
             await createHouse({
                 ...data,
+                images: data.images.map(img => img.url),
                 vendorId: session.user.id,
                 status: "DISPONIBLE",
             });
@@ -121,8 +122,8 @@ export default function AddPropertyForm() {
                         <div key={field.id} className="flex gap-2">
                             <Input
                                 placeholder="http://..."
-                                {...register(`images.${index}` as const)}
-                                error={errors.images?.[index]?.message}
+                                {...register(`images.${index}.url` as const)}
+                                error={errors.images?.[index]?.url?.message}
                             />
                             {index > 0 && (
                                 <Button type="button" variant="danger" onClick={() => remove(index)}>
@@ -135,7 +136,7 @@ export default function AddPropertyForm() {
                 <Button
                     type="button"
                     variant="secondary"
-                    onClick={() => append("")}
+                    onClick={() => append({ url: "" })}
                     className="mt-2"
                 >
                     Ajouter une image
