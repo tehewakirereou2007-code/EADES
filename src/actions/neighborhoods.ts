@@ -1,9 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { levenshtein } from "fast-levenshtein"; // Note: might need to check import style
-// fast-levenshtein usually exports 'get'
-import * as Levenshtein from "fast-levenshtein";
+import Levenshtein from "fast-levenshtein";
 
 const THRESHOLD = 3; // Max distance for fuzzy match
 
