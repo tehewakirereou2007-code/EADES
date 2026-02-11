@@ -1,3 +1,5 @@
+"use client";
+
 import { House, Neighborhood } from "@prisma/client";
 import { formatPrice } from "@/lib/format";
 import Link from "next/link";
