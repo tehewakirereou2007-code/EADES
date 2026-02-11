@@ -13,7 +13,7 @@ import { useSession } from "next-auth/react";
 const houseFormSchema = z.object({
     title: z.string().min(5, "Titre trop court"),
     description: z.string().min(10, "Description trop courte"),
-    price: z.coerce.number().positive("Le prix doit être positif"),
+    price: z.number().positive("Le prix doit être positif"),
     neighborhoodName: z.string().min(2, "Nom du quartier requis"),
     location: z.string().optional(),
     images: z.array(z.string().url("URL invalide")).min(1, "Au moins une image requise"),
