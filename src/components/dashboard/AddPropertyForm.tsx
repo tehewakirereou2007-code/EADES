@@ -43,7 +43,7 @@ export default function AddPropertyForm() {
         },
     });
 
-    const { fields, append, remove } = useFieldArray({
+    const { fields, append, remove } = useFieldArray<HouseFormValues>({
         control,
         name: "images",
     });
