@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // directUrl = env("DIRECT_URL") // Utile pour Supabase/Neon avec pooling
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String?  // Optionnel pour OAuth (Google)
+  name      String?
+  image     String?
+  phone     String?
+  role      String   @default("CLIENT") // CLIENT, VENDEUR, ADMIN
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  houses       House[]       @relation("VendorHouses")
+  reservations Reservation[]
+  reviews      Review[]
+}
+
+model Neighborhood {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  houses    House[]
+  createdAt DateTime @default(now())
+}
+
+
+model House {
+  id             String   @id @default(uuid())
+  title          String
+  description    String
+  price          Float
+  location       String? // Détails de l'adresse
+  latitude       Float?  // Pour la carte
+  longitude      Float?  // Pour la carte
+  neighborhoodId String
+  vendorId       String
+  status         String   @default("DISPONIBLE") // DISPONIBLE, LOUE, VENDU
+  images         String   // Chaîne JSON des URLs d'images
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  neighborhood Neighborhood @relation(fields: [neighborhoodId], references: [id])
+  vendor       User         @relation("VendorHouses", fields: [vendorId], references: [id])
+  reservations Reservation[]
+  reviews      Review[]
+}
+
+model Reservation {
+  id        String   @id @default(uuid())
+  userId    String
+  houseId   String
+  status    String   @default("EN_ATTENTE") // EN_ATTENTE, CONFIRME, ANNULE
+  note      String?  // Message optionnel du client
+  createdAt DateTime @default(now())
+
+  user  User  @relation(fields: [userId], references: [id])
+  house House @relation(fields: [houseId], references: [id])
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  rating    Int
+  comment   String
+  userId    String
+  houseId   String
+  createdAt DateTime @default(now())
+
+  user  User  @relation(fields: [userId], references: [id])
+  house House @relation(fields: [houseId], references: [id])
+}
