@@ -8,7 +8,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  // directUrl = env("DIRECT_URL") // Utile pour Supabase/Neon avec pooling
+  directUrl = env("DIRECT_URL") // Utile pour Supabase/Neon avec pooling
 }
 
 model User {
@@ -18,7 +18,7 @@ model User {
   name      String?
   image     String?
   phone     String?
-  role      String   @default("CLIENT") // CLIENT, VENDEUR, ADMIN
+  role      UserRole @default(CLIENT)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   
@@ -27,33 +27,45 @@ model User {
   reviews      Review[]
 }
 
+enum UserRole {
+  CLIENT
+  VENDEUR
+  ADMIN
+}
+
 model Neighborhood {
   id        String   @id @default(uuid())
-  name      String   @unique
+  name      String
+  slug      String   @unique
   houses    House[]
   createdAt DateTime @default(now())
 }
 
-
 model House {
-  id             String   @id @default(uuid())
+  id             String      @id @default(uuid())
   title          String
   description    String
   price          Float
-  location       String? // Détails de l'adresse
-  latitude       Float?  // Pour la carte
-  longitude      Float?  // Pour la carte
+  location       String?     // Détails de l'adresse
+  latitude       Float?      // Pour la carte
+  longitude      Float?      // Pour la carte
   neighborhoodId String
   vendorId       String
-  status         String   @default("DISPONIBLE") // DISPONIBLE, LOUE, VENDU
-  images         String   // Chaîne JSON des URLs d'images
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  status         HouseStatus @default(DISPONIBLE)
+  images         String      // Chaîne JSON des URLs d'images
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
 
   neighborhood Neighborhood @relation(fields: [neighborhoodId], references: [id])
   vendor       User         @relation("VendorHouses", fields: [vendorId], references: [id])
   reservations Reservation[]
   reviews      Review[]
+}
+
+enum HouseStatus {
+  DISPONIBLE
+  LOUE
+  VENDU
 }
 
 model Reservation {

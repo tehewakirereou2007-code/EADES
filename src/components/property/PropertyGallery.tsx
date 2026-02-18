@@ -76,22 +76,76 @@ export default function PropertyGallery({ images }: PropertyGalleryProps) {
                         )}
                     </>
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center text-white bg-gray-800">
-                        {/* Simulation of 3D View */}
-                        <div className="text-center p-8">
-                            <FaCube className="text-6xl mx-auto mb-4 text-black animate-pulse" />
-                            <h3 className="text-xl font-bold">Mode Visite 3D</h3>
-                            <p className="text-gray-400 mt-2">
-                                Utilisez votre souris pour explorer la pièce.
-                                (Fonctionnalité simulée: nécessite des images panoramiques réelles)
-                            </p>
-                            <div className="mt-8 perspective-1000">
-                                <img
-                                    src={images[currentIndex] || "/placeholder-house.jpg"}
-                                    className="w-64 h-40 object-cover rotate-y-12 shadow-2xl rounded-lg mx-auto transform hover:rotate-y-0 transition-transform duration-1000"
-                                />
+                    <div className="w-full h-full relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+                        {/* Enhanced 3D Panoramic Viewer */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="relative w-full h-full perspective-1000">
+                                <div 
+                                    className="absolute inset-0 transform-gpu transition-transform duration-700 ease-out hover:scale-110"
+                                    style={{
+                                        transformStyle: 'preserve-3d',
+                                        animation: 'rotate3d 20s infinite linear'
+                                    }}
+                                >
+                                    {/* Cube faces for 360° effect */}
+                                    {images.slice(0, 6).map((img, idx) => {
+                                        const transforms = [
+                                            'rotateY(0deg) translateZ(200px)',
+                                            'rotateY(90deg) translateZ(200px)',
+                                            'rotateY(180deg) translateZ(200px)',
+                                            'rotateY(-90deg) translateZ(200px)',
+                                            'rotateX(90deg) translateZ(200px)',
+                                            'rotateX(-90deg) translateZ(200px)',
+                                        ];
+                                        return (
+                                            <div
+                                                key={idx}
+                                                className="absolute inset-0 opacity-80"
+                                                style={{
+                                                    transform: transforms[idx],
+                                                    backfaceVisibility: 'hidden',
+                                                }}
+                                            >
+                                                <img
+                                                    src={img}
+                                                    alt={`Vue ${idx + 1}`}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            </div>
+                                        );
+                                    })}
+                                </div>
                             </div>
                         </div>
+
+                        {/* Overlay Info */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8 text-white">
+                            <div className="flex items-center justify-center gap-3 mb-4">
+                                <FaCube className="text-4xl animate-pulse" />
+                                <h3 className="text-2xl font-bold">Visite 3D Interactive</h3>
+                            </div>
+                            <p className="text-center text-gray-300 text-sm">
+                                Explorez cette propriété en 360°. Survolez pour zoomer.
+                            </p>
+                            <p className="text-center text-gray-400 text-xs mt-2">
+                                💡 Astuce : Pour une expérience optimale, le vendeur peut ajouter des photos panoramiques 360°
+                            </p>
+                        </div>
+
+                        {/* CSS Animation */}
+                        <style jsx>{`
+                            @keyframes rotate3d {
+                                from {
+                                    transform: rotateY(0deg) rotateX(10deg);
+                                }
+                                to {
+                                    transform: rotateY(360deg) rotateX(10deg);
+                                }
+                            }
+                            .perspective-1000 {
+                                perspective: 1000px;
+                            }
+                        `}</style>
                     </div>
                 )}
             </div>

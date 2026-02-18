@@ -5,32 +5,43 @@ async function main() {
     console.log('Seeding fake data...');
 
     // 1. Get or create a sample vendor
-    // Note: This assumes you have at least one user or we create a dummy one
-    let vendor = await prisma.user.findFirst({
-        where: { role: 'VENDEUR' }
+    const vendorEmail = 'contact@eades.tg';
+    let vendor = await prisma.user.upsert({
+        where: { email: vendorEmail },
+        update: {}, // No updates if exists
+        create: {
+            name: 'Agence Immobilière EADES',
+            email: vendorEmail,
+            password: 'password123',
+            role: 'VENDEUR',
+            phone: '+228 90 00 00 00',
+        }
     });
-
-    if (!vendor) {
-        vendor = await prisma.user.create({
-            data: {
-                name: 'Agence Immobilière EADES',
-                email: 'contact@eades.tg',
-                password: 'password123', // In real app, this would be hashed
-                role: 'VENDEUR',
-                emailVerified: new Date(),
-            }
-        });
-    }
 
     // 2. Create sample neighborhoods
     const neighborhoods = ['Adidogomé', 'Agoè', 'Tokoin', 'Bè', 'Amoutivé'];
     const neighborhoodObjects = [];
 
+    function createSlug(name) {
+        return name
+            .trim()
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9 ]/g, "")
+            .replace(/\s+/g, " ")
+            .replace(/\s+/g, "-");
+    }
+
     for (const name of neighborhoods) {
+        const slug = createSlug(name);
         const neighborhood = await prisma.neighborhood.upsert({
-            where: { name: name.toUpperCase() },
+            where: { slug: slug },
             update: {},
-            create: { name: name.toUpperCase() }
+            create: {
+                name: name,
+                slug: slug
+            }
         });
         neighborhoodObjects.push(neighborhood);
     }
