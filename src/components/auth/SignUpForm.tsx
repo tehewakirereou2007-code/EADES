@@ -65,7 +65,7 @@ export default function SignUpForm() {
         <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl space-y-6 border border-gray-100">
             <div className="text-center">
                 <h2 className="text-3xl font-bold text-gray-900">Créer un compte</h2>
-                <p className="mt-2 text-gray-600">Rejoignez la communauté EADES</p>
+                <p className="mt-2 text-gray-600">Rejoignez la communauté KIRAEDES</p>
             </div>
 
             {error && (

@@ -2,8 +2,8 @@ import SignInForm from "@/components/auth/SignInForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Connexion | EADES",
-    description: "Connectez-vous à votre compte EADES",
+    title: "Connexion | KIRAEDES",
+    description: "Connectez-vous à votre compte KIRAEDES",
 };
 
 export default function SignInPage() {

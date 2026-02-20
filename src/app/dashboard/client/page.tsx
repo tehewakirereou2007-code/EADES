@@ -6,7 +6,7 @@ import Link from "next/link";
 import { formatPrice } from "@/lib/format";
 
 export const metadata = {
-    title: "Mon Compte | EADES",
+    title: "Mon Compte | KIRAEDES",
 };
 
 export default async function ClientDashboard() {

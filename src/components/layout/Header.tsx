@@ -18,10 +18,10 @@ export default function Header() {
                     <div className="flex items-center">
                         <Link href="/" className="flex-shrink-0 flex items-center group">
                             <span className="text-3xl font-bold tracking-tighter text-black flex flex-col items-center">
-                                <span className="mb-[-8px]">Éades</span>
-                                <svg width="80" height="8" viewBox="0 0 80 8" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform group-hover:scale-x-110 transition-transform">
-                                    <path d="M2 4C20 4 40 2 78 2" stroke="black" strokeWidth="2" strokeLinecap="round" />
-                                    <path d="M5 6C25 6 45 4 70 4" stroke="black" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />
+                                <span className="mb-[-8px]">Kiræedes</span>
+                                <svg width="100" height="8" viewBox="0 0 100 8" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform group-hover:scale-x-110 transition-transform">
+                                    <path d="M2 4C25 4 50 2 98 2" stroke="black" strokeWidth="2" strokeLinecap="round" />
+                                    <path d="M5 6C30 6 55 4 90 4" stroke="black" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />
                                 </svg>
                             </span>
                         </Link>

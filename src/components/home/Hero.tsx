@@ -7,7 +7,7 @@ export default function Hero() {
             <div className="absolute inset-0">
                 <img
                     src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
-                    alt="Architecture moderne Éades"
+                    alt="Architecture moderne KIRAEDES"
                     className="w-full h-full object-cover opacity-30 grayscale"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40" />
@@ -15,7 +15,7 @@ export default function Hero() {
 
             <div className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
                 <h1 className="text-4xl md:text-6xl font-extrabold text-black mb-6 leading-tight">
-                    Bienvenue sur EADES <br />
+                    Bienvenue sur KIRAEDES <br />
                     <span className="text-gray-600 italic font-medium text-3xl md:text-4xl">
                         L'endroit où vous trouvez les appartements de vos rêves
                     </span>

@@ -7,7 +7,7 @@ import Button from "@/components/ui/Button";
 import { getHouses } from "@/actions/properties";
 
 export const metadata = {
-    title: "Espace Vendeur | EADES",
+    title: "Espace Vendeur | KIRAEDES",
 };
 
 export default async function VendorDashboard() {

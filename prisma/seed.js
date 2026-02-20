@@ -5,12 +5,12 @@ async function main() {
     console.log('Seeding fake data...');
 
     // 1. Get or create a sample vendor
-    const vendorEmail = 'contact@eades.tg';
+    const vendorEmail = 'contact@kiraedes.tg';
     let vendor = await prisma.user.upsert({
         where: { email: vendorEmail },
         update: {}, // No updates if exists
         create: {
-            name: 'Agence Immobilière EADES',
+            name: 'Agence Immobilière KIRAEDES',
             email: vendorEmail,
             password: 'password123',
             role: 'VENDEUR',

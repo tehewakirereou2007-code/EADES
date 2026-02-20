@@ -2,8 +2,8 @@ import SignUpForm from "@/components/auth/SignUpForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Inscription | EADES",
-    description: "Créez votre compte EADES",
+    title: "Inscription | KIRAEDES",
+    description: "Créez votre compte KIRAEDES",
 };
 
 export default function SignUpPage() {

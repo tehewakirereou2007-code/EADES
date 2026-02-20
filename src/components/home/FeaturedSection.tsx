@@ -13,7 +13,7 @@ export default async function FeaturedSection() {
                 <div className="flex justify-between items-end mb-10">
                     <div>
                         <h2 className="text-3xl font-bold text-gray-900">Nos dernières exclusivités</h2>
-                        <p className="mt-2 text-gray-600">Découvrez les biens les plus récents ajoutés sur EADES</p>
+                        <p className="mt-2 text-gray-600">Découvrez les biens les plus récents ajoutés sur KIRAEDES</p>
                     </div>
                     <Link href="/search" className="hidden sm:flex items-center text-black hover:text-gray-600 font-medium transition-colors">
                         Voir tout <FaArrowRight className="ml-2" />

@@ -19,7 +19,7 @@ export default async function Home() {
             <h2 className="text-2xl font-bold text-gray-800">
               Bonjour, {user.name} !
             </h2>
-            <p className="text-gray-600">Heureux de vous revoir sur EADES.</p>
+            <p className="text-gray-600">Heureux de vous revoir sur KIRAEDES.</p>
           </div>
         </div>
       )}

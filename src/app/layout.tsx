@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "EADES - Trouvez la maison de vos rêves",
-  description: "Plateforme immobilière pour louer, acheter et vendre des biens au Togo.",
+  title: "KIRAEDES - Trouvez la maison de vos rêves",
+  description: "Plateforme immobilière premium pour louer, acheter et vendre des biens au Togo.",
 };
 
 export default function RootLayout({

@@ -56,7 +56,7 @@ export default function SignInForm() {
         <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl space-y-6 border border-gray-100">
             <div className="text-center">
                 <h2 className="text-3xl font-bold text-gray-900">Connexion</h2>
-                <p className="mt-2 text-gray-600">Bienvenue sur EADES</p>
+                <p className="mt-2 text-gray-600">Bienvenue sur KIRAEDES</p>
             </div>
 
             {error && (
