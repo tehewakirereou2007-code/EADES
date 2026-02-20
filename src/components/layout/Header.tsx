@@ -31,7 +31,7 @@ export default function Header() {
                         <Link href="/" className="text-black hover:text-gray-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                             Accueil
                         </Link>
-                        <Link href="/properties" className="text-black hover:text-gray-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                        <Link href="/search" className="text-black hover:text-gray-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                             Nos Appartements
                         </Link>
                         {user && (user.role === 'VENDEUR' || user.role === 'ADMIN') && (
@@ -85,7 +85,7 @@ export default function Header() {
                         <Link href="/" className="block text-gray-700 hover:text-blue-600 hover:bg-gray-50 px-3 py-2 rounded-md text-base font-medium">
                             Accueil
                         </Link>
-                        <Link href="/properties" className="block text-gray-700 hover:text-blue-600 hover:bg-gray-50 px-3 py-2 rounded-md text-base font-medium">
+                        <Link href="/search" className="block text-gray-700 hover:text-blue-600 hover:bg-gray-50 px-3 py-2 rounded-md text-base font-medium">
                             Nos Appartements
                         </Link>
                         {user ? (

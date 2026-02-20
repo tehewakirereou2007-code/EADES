@@ -64,23 +64,31 @@ export default function VendorPropertyList({ houses }: VendorPropertyListProps) 
                                 <span className="text-sm text-gray-900">{formatPrice(house.price)}</span>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
-                                <span className={`px - 2 inline - flex text - xs leading - 5 font - semibold rounded - full ${house.status === 'DISPONIBLE' ? 'bg-green-100 text-green-800' :
+                                <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${house.status === 'DISPONIBLE' ? 'bg-green-100 text-green-800' :
                                     house.status === 'LOUE' ? 'bg-red-100 text-red-800' : 'bg-gray-100 text-gray-800'
-                                    } `}>
+                                    }`}>
                                     {house.status}
                                 </span>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium flex items-center space-x-3">
-                                <Link href={`/ property / ${house.id} `} className="text-blue-600 hover:text-blue-900" title="Voir">
+                                <Link href={`/property/${house.id}`} className="text-blue-600 hover:text-blue-900" title="Voir">
                                     <FaEye className="text-lg" />
                                 </Link>
                                 <button
                                     onClick={() => toggleStatus(house.id, house.status)}
                                     disabled={loadingId === house.id}
-                                    className={`${house.status === 'DISPONIBLE' ? 'text-gray-400' : 'text-gray-700'} hover:opacity-80 disabled:opacity-50 transition-all`}
-                                    title={house.status === 'DISPONIBLE' ? 'Marquer comme Loué' : 'Marquer comme Disponible'}
+                                    className={`px-3 py-1 rounded-md text-xs font-medium transition-all flex items-center gap-1 ${house.status === 'DISPONIBLE'
+                                            ? 'bg-red-50 text-red-600 hover:bg-red-100 border border-red-200'
+                                            : 'bg-green-50 text-green-600 hover:bg-green-100 border border-green-200'
+                                        } disabled:opacity-50`}
                                 >
-                                    <FaSyncAlt className={`text - lg ${loadingId === house.id ? 'animate-spin' : ''} `} />
+                                    {loadingId === house.id ? (
+                                        <FaSyncAlt className="animate-spin" />
+                                    ) : house.status === 'DISPONIBLE' ? (
+                                        "Marquer Loué"
+                                    ) : (
+                                        "Marquer Disponible"
+                                    )}
                                 </button>
                                 <button className="text-gray-300 cursor-not-allowed" title="Modifier (Prochainement)">
                                     <FaEdit className="text-lg" />

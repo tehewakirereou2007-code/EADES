@@ -50,8 +50,9 @@ export async function getHouses(filter?: {
 }) {
     const where: Prisma.HouseWhereInput = {};
 
-    // Only filter by status DISPONIBLE if not a vendor viewing their own
-    if (!filter?.vendorId) {
+    // By default, we show all houses, but we could filter by status if needed.
+    // For now, let's allow all statuses to be returned so 'LOUE' properties are visible with their badges.
+    if (false && !filter?.vendorId) {
         where.status = "DISPONIBLE";
     }
 
