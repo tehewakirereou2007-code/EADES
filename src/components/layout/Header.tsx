@@ -16,14 +16,15 @@ export default function Header() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                     <div className="flex items-center">
-                        <Link href="/" className="flex-shrink-0 flex items-center group">
-                            <span className="text-3xl font-bold tracking-tighter text-black flex flex-col items-center">
-                                <span className="mb-[-8px]">Kiræedes</span>
-                                <svg width="100" height="8" viewBox="0 0 100 8" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform group-hover:scale-x-110 transition-transform">
-                                    <path d="M2 4C25 4 50 2 98 2" stroke="black" strokeWidth="2" strokeLinecap="round" />
-                                    <path d="M5 6C30 6 55 4 90 4" stroke="black" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />
-                                </svg>
-                            </span>
+                        <Link href="/" className="flex-shrink-0 flex items-center">
+                            <Image
+                                src="/logo.png"
+                                alt="KIRAEDES"
+                                width={150}
+                                height={60}
+                                className="h-12 w-auto object-contain"
+                                priority
+                            />
                         </Link>
                     </div>
 
