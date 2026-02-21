@@ -20,9 +20,9 @@ export default function Header() {
                             <Image
                                 src="/logo.png"
                                 alt="KIRAEDES"
-                                width={150}
-                                height={60}
-                                className="h-12 w-auto object-contain"
+                                width={180}
+                                height={80}
+                                className="h-16 w-auto object-contain"
                                 priority
                             />
                         </Link>

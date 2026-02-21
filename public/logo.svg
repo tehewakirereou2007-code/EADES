@@ -1,0 +1,15 @@
+<svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap');
+    </style>
+  </defs>
+  <!-- Main Text -->
+  <text x="200" y="100" text-anchor="middle" font-family="'Great Vibes', cursive" font-size="100" fill="black">KirAedes</text>
+  
+  <!-- Stylized Underline Signature -->
+  <path d="M 40 120 C 120 115 280 115 360 120" stroke="black" stroke-width="3" fill="none" stroke-linecap="round" />
+  
+  <!-- Scribble/Flourish -->
+  <path d="M 160 135 Q 200 130 240 135 T 200 160 T 220 190" stroke="black" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7" />
+</svg>
