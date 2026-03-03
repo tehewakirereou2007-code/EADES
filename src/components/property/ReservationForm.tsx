@@ -11,9 +11,11 @@ interface ReservationFormProps {
     houseId: string;
     houseTitle: string;
     vendorPhone?: string | null;
+    vendorName?: string | null;
+    contactPhone?: string | null;
 }
 
-export default function ReservationForm({ houseId, houseTitle, vendorPhone }: ReservationFormProps) {
+export default function ReservationForm({ houseId, houseTitle, vendorPhone, vendorName, contactPhone }: ReservationFormProps) {
     const { data: session } = useSession();
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +34,10 @@ export default function ReservationForm({ houseId, houseTitle, vendorPhone }: Re
 
             // 2. Redirect to WhatsApp
             const companyPhone = "22870059471"; // As requested
-            const text = `Bonjour, je suis intéressé par la maison : ${houseTitle} (ID: ${houseId}). J'aimerais organiser une visite.`;
+            const vendorContact = contactPhone || vendorPhone || "Non renseigné";
+            const text = `Bonjour Kiraedes, je suis intéressé(e) par la propriété "${houseTitle}" (Réf: ${houseId}).
+Cette propriété appartient au vendeur ${vendorName || "Inconnu"} (Contact : ${vendorContact}).
+J'aimerais organiser une visite.`;
             const whatsappUrl = `https://wa.me/${companyPhone}?text=${encodeURIComponent(text)}`;
 
             window.open(whatsappUrl, "_blank");

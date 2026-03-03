@@ -45,18 +45,14 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
                                 {house.description}
                             </p>
 
-                            <div className="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-gray-100">
+                            <div className="grid grid-cols-2 gap-4 mt-8 pt-8 border-t border-gray-100">
                                 <div className="text-center">
                                     <FaBed className="mx-auto text-2xl text-gray-400 mb-2" />
-                                    <span className="block font-bold text-gray-900">3 Chambres</span>
+                                    <span className="block font-bold text-gray-900">{house.rooms ? `${house.rooms} Pièce(s)` : "-"}</span>
                                 </div>
                                 <div className="text-center">
                                     <FaBath className="mx-auto text-2xl text-gray-400 mb-2" />
-                                    <span className="block font-bold text-gray-900">2 Sdb.</span>
-                                </div>
-                                <div className="text-center">
-                                    <FaRulerCombined className="mx-auto text-2xl text-gray-400 mb-2" />
-                                    <span className="block font-bold text-gray-900">120 m²</span>
+                                    <span className="block font-bold text-gray-900">{house.bathrooms ? `${house.bathrooms} Sdb/WC` : "-"}</span>
                                 </div>
                             </div>
                         </div>
@@ -100,6 +96,8 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
                                 houseId={house.id}
                                 houseTitle={house.title}
                                 vendorPhone={house.vendor.phone}
+                                vendorName={house.vendor.name}
+                                contactPhone={house.contactPhone}
                             />
                         </div>
                     </div>

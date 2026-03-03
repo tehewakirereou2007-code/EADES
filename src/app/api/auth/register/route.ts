@@ -3,6 +3,7 @@ import { signUpSchema } from "@/lib/validations/auth";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { sendWelcomeEmail } from "@/lib/mail";
 
 export async function POST(req: Request) {
     try {
@@ -30,6 +31,14 @@ export async function POST(req: Request) {
                 role,
             },
         });
+
+        // Envoi de l'email de bienvenue
+        try {
+            await sendWelcomeEmail(user.email!, user.name!);
+        } catch (mailError) {
+            console.error("Failed to send welcome email:", mailError);
+            // On ne bloque pas l'inscription si l'email échoue
+        }
 
         // Ne pas renvoyer le mot de passe
         const { password: _, ...userWithoutPassword } = user;

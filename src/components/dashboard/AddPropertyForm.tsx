@@ -16,6 +16,9 @@ const houseFormSchema = z.object({
     price: z.number().positive("Le prix doit être positif"),
     neighborhoodName: z.string().min(2, "Nom du quartier requis"),
     location: z.string().optional(),
+    rooms: z.number().optional(),
+    bathrooms: z.number().optional(),
+    contactPhone: z.string().optional(),
 });
 
 type HouseFormValues = z.infer<typeof houseFormSchema>;
@@ -40,6 +43,9 @@ export default function AddPropertyForm() {
             price: 0,
             neighborhoodName: "",
             location: "",
+            rooms: undefined,
+            bathrooms: undefined,
+            contactPhone: "",
         },
     });
 
@@ -136,6 +142,32 @@ export default function AddPropertyForm() {
                     placeholder="ex: Près du marché"
                     error={errors.location?.message}
                     {...register("location")}
+                />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Input
+                    label="Nombre de pièces"
+                    type="number"
+                    placeholder="ex: 4"
+                    error={errors.rooms?.message as string}
+                    {...register("rooms")}
+                />
+                <Input
+                    label="Salles de bain / WC"
+                    type="number"
+                    placeholder="ex: 2"
+                    error={errors.bathrooms?.message as string}
+                    {...register("bathrooms")}
+                />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Input
+                    label="VOTRE numéro WhatsApp (pour les réservations)"
+                    placeholder="ex: 22890000000"
+                    error={errors.contactPhone?.message as string}
+                    {...register("contactPhone")}
                 />
             </div>
 

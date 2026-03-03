@@ -47,6 +47,10 @@ model House {
   description    String
   price          Float
   location       String?     // Détails de l'adresse
+  rooms          Int?        // Nombre de pièces/chambres
+  bathrooms      Int?        // Salles de bain / WC
+  area           Int?        // Surface en m2
+  contactPhone   String?     // Numéro vendeur affiché
   latitude       Float?      // Pour la carte
   longitude      Float?      // Pour la carte
   neighborhoodId String
