@@ -78,7 +78,7 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
                                     {formatPrice(house.price)}
                                 </div>
                                 <div className="mt-4 flex items-center gap-3">
-                                    {house.vendor.image ? (
+                                    {house.vendor?.image ? (
                                         <img src={house.vendor.image} className="w-12 h-12 rounded-full" />
                                     ) : (
                                         <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-500">
@@ -86,7 +86,7 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
                                         </div>
                                     )}
                                     <div>
-                                        <p className="font-semibold text-gray-900">{house.vendor.name || "Vendeur"}</p>
+                                        <p className="font-semibold text-gray-900">{house.vendor?.name || "Vendeur"}</p>
                                         <p className="text-sm text-gray-500">Propriétaire</p>
                                     </div>
                                 </div>
@@ -95,8 +95,8 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
                             <ReservationForm
                                 houseId={house.id}
                                 houseTitle={house.title}
-                                vendorPhone={house.vendor.phone}
-                                vendorName={house.vendor.name}
+                                vendorPhone={house.vendor?.phone || null}
+                                vendorName={house.vendor?.name || null}
                                 contactPhone={house.contactPhone}
                             />
                         </div>
