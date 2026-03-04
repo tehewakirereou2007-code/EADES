@@ -1,8 +1,14 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export const sendWelcomeEmail = async (email: string, name: string) => {
+    // Only initialize Resend if the API key is present
+    if (!process.env.RESEND_API_KEY) {
+        console.warn("RESEND_API_KEY is not defined. Skipping welcome email.");
+        return;
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
     try {
         await resend.emails.send({
             from: "KIRAEDES <onboarding@resend.dev>",
